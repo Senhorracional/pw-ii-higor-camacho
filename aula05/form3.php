@@ -4,7 +4,7 @@
 <body>
     <form action="exercicio3.php" method="POST">
         <label for="nota1">1º Nota:</label> <input type="number" name="nota1"><br>
-        <label for="nota2">2º Nota:</label> <input type="number" step=".11" name="nota2"><br>
+        <label for="nota2">2º Nota:</label> <input type="number" name="nota2"><br>
         <input type="submit">
     </form>
 </body>
