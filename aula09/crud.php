@@ -3,7 +3,7 @@
 $db = new mysqli('localhost', 'root', '', 'crud');
 
 // Funções para CRUD
-function getNome(){
+function getNomes() {
     global $db;
     $sql = "SELECT * FROM nomes";
     $result = $db->query($sql);
@@ -43,11 +43,10 @@ if ($acao === 'adicionar') {
     exit();
 } elseif ($acao === 'editar') {
     $id = intval($_GET['id']);
-    $nomeOriginal = ($_GET['nome']);
+    $nomeoriginal = ($_GET['nome']);
     $nome = $_POST['nome'];
     editarNome($id, $nome);
-    header('Location: editar.php?id=' . $id . 'nome=' . $nomeOriginal);
-    // Redirecionar para editar.php com o ID
+    header('Location: editar.php?id=' . $id . 'nome=' . $nomeoriginal); // Redirecionar para editar.php com o ID
     exit();
 } elseif ($acao === 'excluir') {
     excluirNome($id);
@@ -75,6 +74,12 @@ $nomes = getNomes();
     <tr>
         <td><?php echo $nome['id']; ?></td>
         <td><?php echo $nome['nome']; ?></td>
-        <td></td>
+        <td>
+            <a href="?acao=editar&id=<?php echo $nome['id']; ?>
+            &nome=<?php echo urlencode($nome['nome']); ?>">Editar</a> |
+            <a href="?acao=excluir&id=<?php echo $nome['id']; ?>">Excluir</a>
+        </td>
     </tr>
+    <?php endforeach; ?>
 </table>
+<?php $db->close(); ?>
